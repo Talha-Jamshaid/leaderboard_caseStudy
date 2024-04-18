@@ -19,6 +19,17 @@ export default function useHome() {
     searchedIndex,
   }: {data: UserData[]; searchedList: UserData[]; searchedIndex: number} =
     useSelector((state: StoreObj) => state.home);
+
+  const updateTableData = (
+    tableData: TableData,
+    index: number,
+    searchedList?: UserData[],
+  ) => {
+    console.log('tableData', tableData);
+    console.log('index', index);
+    console.log('searchedList', searchedList);
+    dispatch(setTableData(tableData, index, searchedList));
+  };
   const handleSearch = () => {
     const result = searchByName(searchQuey, data);
     if (!result?.length) {
@@ -47,9 +58,10 @@ export default function useHome() {
 
     const tableFormat = convertToTableArray(finalElements);
 
-    dispatch(
-      setTableData(tableFormat as TableData, finalSearchIndex, finalElements),
-    );
+    // dispatch(
+    //   setTableData(tableFormat as TableData, finalSearchIndex, finalElements),
+    // );
+    updateTableData(tableFormat as TableData, finalSearchIndex, finalElements);
   };
   const hanldeLowestCount = () => {
     const lastTenElements: UserData[] = data.slice(-10);
@@ -67,7 +79,8 @@ export default function useHome() {
     });
     const tableFormat = convertToTableArray(lastTenElements);
     setSearchQuery('');
-    dispatch(setTableData(tableFormat as TableData, searchIndex));
+    // dispatch(setTableData(tableFormat as TableData, searchIndex, []));
+    updateTableData(tableFormat as TableData, searchIndex, []);
   };
 
   const handleSortByName = () => {
@@ -87,7 +100,8 @@ export default function useHome() {
 
     const tableFormat = convertToTableArray(searchedList);
 
-    dispatch(setTableData(tableFormat as TableData, newIndex, searchedList));
+    // dispatch(setTableData(tableFormat as TableData, newIndex, searchedList));
+    updateTableData(tableFormat as TableData, newIndex, searchedList);
   };
 
   const handlePartialUserSearch = () => {
@@ -99,7 +113,8 @@ export default function useHome() {
     }
 
     const tableFormat = convertToTableArray(serachedUsers);
-    dispatch(setTableData(tableFormat as TableData));
+    // dispatch(setTableData(tableFormat as TableData, -1, []));
+    updateTableData(tableFormat as TableData, -1, []);
   };
   return {
     searchQuey,

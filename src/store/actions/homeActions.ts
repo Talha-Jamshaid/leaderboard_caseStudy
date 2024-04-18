@@ -1,4 +1,6 @@
-export const SET_TABLE_DATA = 'SET_TABLE_DATA';
+export enum ActionType {
+    SET_TABLE_DATA = 'SET_TABLE_DATA',
+  }
 export interface TableData extends Array<[string, string | number, number]> {}
 
 export const setTableData = (
@@ -6,6 +8,6 @@ export const setTableData = (
   searchIndex?: number,
   finalElements?: object[],
 ) => ({
-  type: SET_TABLE_DATA,
+  type: ActionType.SET_TABLE_DATA,
   payload: {data, searchIndex, finalElements},
 });

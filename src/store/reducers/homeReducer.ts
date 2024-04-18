@@ -1,11 +1,10 @@
 import {Reducer} from 'redux';
 import userData from '../../constants/leaderboard.json';
 import {sortUserDataByBananas} from '../../utils/commonUtils';
-import {SET_TABLE_DATA} from '../actions/homeActions';
 import {HomeState} from '../../types/storeObj';
-import {UserData} from '../../utils/commonUtils';
+import {ActionType} from '../actions/homeActions';
 
-const initialState: HomeState = {
+export const initialStateHome: HomeState = {
   data: sortUserDataByBananas(userData),
   tableData: [],
   searchedList: [],
@@ -13,9 +12,12 @@ const initialState: HomeState = {
   searchedIndex: 0,
 };
 
-const homeReducer: Reducer<HomeState, any> = (state = initialState, action) => {
+const homeReducer: Reducer<HomeState, any> = (
+  state = initialStateHome,
+  action,
+) => {
   switch (action.type) {
-    case SET_TABLE_DATA:
+    case ActionType.SET_TABLE_DATA:
       return {
         ...state,
         tableData: action.payload.data,
