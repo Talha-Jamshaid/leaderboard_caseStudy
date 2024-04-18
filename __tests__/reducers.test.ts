@@ -1,5 +1,5 @@
-import homeReducer, {initialStateHome} from '../../store/reducers/homeReducer';
-import {ActionType} from '../../store/actions/homeActions';
+import homeReducer, {initialStateHome} from '../src/store/reducers/homeReducer';
+import {ActionType} from '../src/store/actions/homeActions';
 
 describe('homeReducer', () => {
   const initialState = initialStateHome;

@@ -1,5 +1,5 @@
-import {TableData, setTableData} from '../../store/actions/homeActions';
-import {ActionType} from '../../store/actions/homeActions';
+import {TableData, setTableData} from '../src/store/actions/homeActions';
+import {ActionType} from '../src/store/actions/homeActions';
 
 describe('setTableData Action Creator', () => {
   const testCases = [
